@@ -8,6 +8,7 @@ using System.ServiceModel;
 
 namespace Resource.ServiceContracts
 {
+    // Everything which is named Contract means that it's public to be readen by other services 
     [ServiceContract]
     public interface ICustommerResource
     {

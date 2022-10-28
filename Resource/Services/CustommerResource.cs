@@ -9,6 +9,7 @@ using Utilities;
 
 namespace Resource.Services
 {
+    // CRUD Operations 
     public class CustommerResource : ICustommerResource
     {
         private DbObjects.CustommersModelsDataContext dbContext;

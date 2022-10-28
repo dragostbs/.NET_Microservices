@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 
 namespace Resource.DataContracts
 {
+    // DataContract used to transfer the data stored in Custommer from a micro service to another VFC, data becomes Objects
     [DataContract]
     public class Custommer
     {
