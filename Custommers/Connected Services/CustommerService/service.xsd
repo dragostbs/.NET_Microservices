@@ -37,7 +37,9 @@
   </xs:element>
   <xs:element name="AddCustommerResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Manager.DataContracts" minOccurs="0" name="AddCustommerResult" nillable="true" type="q5:ArrayOfError" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>

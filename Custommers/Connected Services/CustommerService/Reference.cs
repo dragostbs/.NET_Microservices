@@ -138,6 +138,67 @@ namespace Custommers.CustommerService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Error", Namespace="http://schemas.datacontract.org/2004/07/Manager.DataContracts")]
+    [System.SerializableAttribute()]
+    public partial class Error : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ErrorCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ErrorCode {
+            get {
+                return this.ErrorCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ErrorCodeField, value) != true)) {
+                    this.ErrorCodeField = value;
+                    this.RaisePropertyChanged("ErrorCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CustommerService.ICustommerService")]
     public interface ICustommerService {
@@ -155,10 +216,10 @@ namespace Custommers.CustommerService {
         System.Threading.Tasks.Task<Custommers.CustommerService.Custommer> GetCustommerByIDAsync(System.Guid ID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustommerService/AddCustommer", ReplyAction="http://tempuri.org/ICustommerService/AddCustommerResponse")]
-        void AddCustommer(Custommers.CustommerService.Custommer custommer);
+        Custommers.CustommerService.Error[] AddCustommer(Custommers.CustommerService.Custommer custommer);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustommerService/AddCustommer", ReplyAction="http://tempuri.org/ICustommerService/AddCustommerResponse")]
-        System.Threading.Tasks.Task AddCustommerAsync(Custommers.CustommerService.Custommer custommer);
+        System.Threading.Tasks.Task<Custommers.CustommerService.Error[]> AddCustommerAsync(Custommers.CustommerService.Custommer custommer);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -204,11 +265,11 @@ namespace Custommers.CustommerService {
             return base.Channel.GetCustommerByIDAsync(ID);
         }
         
-        public void AddCustommer(Custommers.CustommerService.Custommer custommer) {
-            base.Channel.AddCustommer(custommer);
+        public Custommers.CustommerService.Error[] AddCustommer(Custommers.CustommerService.Custommer custommer) {
+            return base.Channel.AddCustommer(custommer);
         }
         
-        public System.Threading.Tasks.Task AddCustommerAsync(Custommers.CustommerService.Custommer custommer) {
+        public System.Threading.Tasks.Task<Custommers.CustommerService.Error[]> AddCustommerAsync(Custommers.CustommerService.Custommer custommer) {
             return base.Channel.AddCustommerAsync(custommer);
         }
     }

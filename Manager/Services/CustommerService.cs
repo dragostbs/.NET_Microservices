@@ -13,9 +13,11 @@ namespace Manager.Services
     public class CustommerService : ICustommerService
     {
         private readonly CustommerResource.ICustommerResource custommerResource;
+        private readonly CustommerValidation.ICustommerValidationService custommerValidationService;
         public CustommerService()
         {
             this.custommerResource = new CustommerResource.CustommerResourceClient();
+            this.custommerValidationService = new CustommerValidation.CustommerValidationServiceClient();
         }
         public Manager.DataContracts.Custommer[] GetCustommers()
         {
@@ -32,10 +34,28 @@ namespace Manager.Services
             CustommerResource.Custommer custommer = custommerResource.GetCustommerByID(ID);
             return custommer.MapObject<Manager.DataContracts.Custommer>();
         }
-        public void AddCustommer(Custommer custommer)
+
+        public Manager.DataContracts.Error[] AddCustommer(Custommer custommer)
         {
-            CustommerResource.Custommer newCustommer = custommer.MapObject < CustommerResource.Custommer > ();
-            custommerResource.InsertCustommer(newCustommer);
+            CustommerResource.Custommer newCustommer = custommer.MapObject<CustommerResource.Custommer>();
+            CustommerValidation.CustommerName custommerName = new CustommerValidation.CustommerName
+            {
+                Name = newCustommer.Name
+            };
+            List<CustommerValidation.Error> errors = new List<CustommerValidation.Error>();
+
+            errors.AddRange(custommerValidationService.ValidateName(custommerName));
+            //validare nume
+            //validare custommer
+            errors.AddRange(custommerValidationService.Validate(newCustommer.
+           MapObject<CustommerValidation.Custommer>()));
+            if (!errors.Any())
+                custommerResource.InsertCustommer(newCustommer);
+            //mapare erori pe contractul de manager
+            List<Manager.DataContracts.Error> returnedErrors = new List<Manager.DataContracts.Error>();
+            foreach (CustommerValidation.Error error in errors)
+                returnedErrors.Add(error.MapObject<Manager.DataContracts.Error>());
+            return returnedErrors.ToArray();
         }
     }
 }

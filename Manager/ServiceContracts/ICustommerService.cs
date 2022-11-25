@@ -17,7 +17,7 @@ namespace Manager.ServiceContracts
         [OperationContract]
         Custommer GetCustommerByID(Guid ID);
         [OperationContract]
-        void AddCustommer(Custommer custommer);
+        Manager.DataContracts.Error[] AddCustommer(Custommer custommer);
     }
 
 }
