@@ -8,14 +8,16 @@ namespace Custommers.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly CustommerService.ICustommerService custommerServiceClient;
+        private readonly ServiceProxy.CustommerServiceProxy custommerServiceProxy;
         public HomeController()
         {
-            this.custommerServiceClient = new CustommerService.CustommerServiceClient();
+            // Initialize proxy
+            this.custommerServiceProxy = new ServiceProxy.CustommerServiceProxy();
         }
         public ActionResult Index()
         {
-            CustommerService.Custommer[] custommers = custommerServiceClient.GetCustommers();
+            ServiceProxy.Custommer[] custommers = custommerServiceProxy.GetCustommers();
+
             return View(custommers);
         }
 
@@ -24,15 +26,17 @@ namespace Custommers.Controllers
         {
             return View();
         }
+
         // POST: Test/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
             try
             {
-                CustommerService.Custommer custommer = new CustommerService.Custommer();
+                ServiceProxy.Custommer custommer = new ServiceProxy.Custommer();
                 UpdateModel(custommer);
-                CustommerService.Error[] errors = custommerServiceClient.AddCustommer(custommer);
+                ServiceProxy.Error[] errors = custommerServiceProxy.AddCustommer(custommer);
+
                 if (errors.Any())
                 {
                     ViewData["Error"] = errors;

@@ -10,15 +10,17 @@ namespace Engine.Services
 {
     public class CustommerValidationService : ICustommerValidationService
     {
-        private readonly CustommerResource.CustommerResourceClient custommerResource;
- public CustommerValidationService()
+        private readonly ResourceProxy.CustommerResourceProxy custommerResourceProxy;
+        public CustommerValidationService()
         {
-            this.custommerResource = new CustommerResource.CustommerResourceClient();
+            this.custommerResourceProxy = new ResourceProxy.CustommerResourceProxy();
         }
         public Error[] ValidateName(CustommerName custommerName)
         {
             List<Error> errors = new List<Error>();
-            CustommerResource.Custommer[] existingCustommers = custommerResource.GetAllCustommers();
+
+            List<ResourceProxy.Custommer> existingCustommers = custommerResourceProxy.GetAllCustommers();
+
             if (existingCustommers.Any(x => x.Name == custommerName.Name && x.IDCustommer != custommerName.ID))
                 errors.Add(new Error
                 {

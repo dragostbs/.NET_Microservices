@@ -33,6 +33,7 @@ namespace Resource.Services
         public Custommer GetCustommerByID(Guid ID)
         {
             DbObjects.Custommer existingCustommer = dbContext.Custommers.FirstOrDefault(x => x.IDCustommer == ID);
+
             if (existingCustommer != null)
                 return existingCustommer.MapObject<Custommer>();
             else
@@ -47,6 +48,7 @@ namespace Resource.Services
         public void UpdateCustommer(Custommer custommer)
         {
             DbObjects.Custommer existingmember = dbContext.Custommers.FirstOrDefault(x => x.IDCustommer == custommer.IDCustommer);
+
             if (existingmember != null)
             {
                 existingmember.UpdateObject(custommer);

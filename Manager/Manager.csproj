@@ -49,16 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\CustommerResource\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Connected Services\CustommerValidation\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="CustommerService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -72,70 +62,24 @@
     <Compile Include="Services\CustommerService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EngineProxy\EngineProxy.csproj">
+      <Project>{4201caf9-29ce-4161-b165-81c63881e4da}</Project>
+      <Name>EngineProxy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ResourceProxy\ResourceProxy.csproj">
+      <Project>{cc5bfcfd-c09a-4768-8f19-d8341a2e8859}</Project>
+      <Name>ResourceProxy</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utilities\Utilities.csproj">
       <Project>{00b3d1b1-0e27-4ad3-b828-0a4ca91dc041}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\CustommerValidation\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Connected Services\CustommerResource\Manager.CustommerResource.Custommer.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\CustommerResource\Resource.DataContracts.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CustommerResource\service.wsdl" />
-    <None Include="Connected Services\CustommerResource\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CustommerResource\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CustommerValidation\Engine.DataContracts.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CustommerValidation\Manager.CustommerValidation.Error.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\CustommerValidation\service.wsdl" />
-    <None Include="Connected Services\CustommerValidation\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CustommerValidation\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\CustommerResource\" />
-    <WCFMetadataStorage Include="Connected Services\CustommerValidation\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CustommerResource\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CustommerResource\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CustommerResource\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CustommerValidation\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CustommerValidation\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
